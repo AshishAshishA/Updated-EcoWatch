@@ -1,0 +1,49 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>Sign Up</h3>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+
+            <input type="submit"  name="register" value="register" id="">
+        </form>
+
+        <p>----------Continue With-------------</p>
+        <div class="allauth">
+            <button>
+                {% if request.GET.next %}
+                    <a href="{% provider_login_url 'google' %}?next={% url 'account_login' %}">
+                {% else %}
+                    <a href="{% provider_login_url 'google' %}?next={% url 'home' %}">
+                {% endif %}
+                    <img src="{% static 'images/signin-with-google.jpg' %}" alt="google sign in">
+                </a>
+            </button>
+            <br>
+            <button>
+                {% if request.GET.next %}
+                    <a href="{% provider_login_url 'facebook' method='oauth2' %}?next={% url 'account_login' %}">
+                {% else %}
+                    <a href="{% provider_login_url 'facebook' method='oauth2' %}?next={% url 'home' %}">
+                {% endif %}
+                    <img src="{% static 'images/login-with-facebook.png' %}" alt="facebook sign in">
+                </a>
+                </button>
+        </div>
+        <p>Already have account <a href="{% url 'eco-login' %}">Login Here</a></p>
+    </div>
+
+
+</body>
+</html>

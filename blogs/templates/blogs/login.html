@@ -1,0 +1,52 @@
+{% load static %}
+{% load socialaccount %}
+{% providers_media_js %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/login-signup.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="header-bar">
+        <h1>Login</h1>
+    </div>
+    
+    <div class="card-body">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input class="button" type="submit" name='login' value="Login">
+        </form>
+        <p>---------- continue with -----------</p>
+        
+        <div class="allauth">
+            <button>
+                {% if request.GET.next %}
+                    <a href="{% provider_login_url 'google' %}?next={% url 'account_login' %}">
+                {% else %}
+                    <a href="{% provider_login_url 'google' %}?next={% url 'home' %}">
+                {% endif %}
+                    <img src="{% static 'images/signin-with-google.jpg' %}" alt="google sign in">
+                </a>
+            </button>
+            <br>
+            <button>
+                {% if request.GET.next %}
+                    <a href="{% provider_login_url 'facebook' method='oauth2' %}?next={% url 'account_login' %}">
+                {% else %}
+                    <a href="{% provider_login_url 'facebook' method='oauth2' %}?next={% url 'home' %}">
+                {% endif %}
+                    <img src="{% static 'images/login-with-facebook.png' %}" alt="facebook sign in">
+                </a>
+            </button>
+
+        <p>Don't have account: <a href="{% url 'register' %}">Sign Up</a></p>
+    </div>
+    
+</body>
+</html>

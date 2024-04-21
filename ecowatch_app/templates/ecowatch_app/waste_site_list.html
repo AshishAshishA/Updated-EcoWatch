@@ -1,0 +1,74 @@
+<!-- waste_site_list.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Waste Site List</title>
+    <link rel="stylesheet" href="{% static 'css/card.css' %}">
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'upload_and_tag' %}">Upload and Tag Waste Site</a>
+        <a href="{% url 'home' %}">Interactive Blog Section</a>
+    </div>
+
+
+    <div class="navbar">
+        {% if request.user.is_authenticated %}
+            <a href="{% url 'eco-logout' %}">Logout</a> 
+            <a href="{% url 'waste_site_list' %}"></a>
+        {% else %}
+            <a href="{% url 'eco-login' %}">Login</a> 
+            <a href="{% url 'eco-register' %}">SignUp</a>
+        {% endif %}
+    </div>
+
+    <div>
+        {% if user.is_authenticated %}
+            <p>Welcome {{user}}</p>
+            {% with my_post='my_post' %}
+                <a href="{% url 'my-post' my_post %}">My Posts</a>
+            {% endwith %}
+        {% endif %}
+        {% if my_post != None %}
+            <a href="{% url 'waste_site_list' %}">All Posts</a>
+        {% endif %}
+    </div>
+
+    <div class="filters">
+        <form method="get">
+            <p>Filter By City:</p>
+            {{ waste_sites.form.city_name }}
+            <input type="submit" />
+        </form>
+    </div>
+
+    {% if user.is_authenticated %}
+        <p>Welcome {{user}}</p>
+    {% endif %}
+
+    
+    <h1>Waste Site List</h1>
+    <ul>
+        {% for waste_site in waste_sites.qs %}
+            <li><a href="https://www.google.com/maps?q={{ waste_site.latitude }},{{ waste_site.longitude }}" target="_blank">Navigate to site</a></li>
+            <li>{{ waste_site.city_name }}</li>
+            <li><strong>Description:</strong> {{ waste_site.description }}</li>
+            <li><strong>Video:</strong> 
+                {% if waste_site.video %}
+                    <video width="320" height="240" controls>
+                        <source src="{{ waste_site.video.video_file.url }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                {% else %}
+                    No video available
+                {% endif %}
+            </li>
+            <!-- Display other waste site details as needed -->
+        {% endfor %}
+    </ul>
+    
+</body>
+</html>
