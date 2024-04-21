@@ -1,3 +1,5 @@
+Read in Code view
+
 How To Run in local env
 
 Steps:
@@ -46,3 +48,6 @@ git push -u origin main
 git remote add origin https://github.com/AshishAshishA/Updated-EcoWatch.git
 git branch -M main
 git push -u origin main
+
+for configuring user
+git config user.email my-email
