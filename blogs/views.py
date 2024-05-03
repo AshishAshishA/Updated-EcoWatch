@@ -59,6 +59,7 @@ class CustomRegisterView(FormView):
         if user is not None:
             login(self.request,user)
         return super(CustomRegisterView,self).form_valid(form)
+        
 
     # def get(self, *args, **kwargs):
     #     if self.request.user.is_authenticated:
@@ -95,7 +96,6 @@ def Logout(request):
     #         next_url = self.request.GET.get('next')
     #         # Return the next URL if provided, otherwise default to LOGIN_REDIRECT_URL
     #         return next_url if next_url else reverse_lazy('home')
-
 
 
 class CreateBlogs(LoginRequiredMixin,UserAccessMixin,CreateView):

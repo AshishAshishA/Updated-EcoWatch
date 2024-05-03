@@ -51,3 +51,6 @@ git push -u origin main
 
 for configuring user
 git config user.email my-email
+
+to remove added file and folder(in this case env folder)
+git rm --cached -r env
