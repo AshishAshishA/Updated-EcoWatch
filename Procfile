@@ -1,1 +1,1 @@
-web: gunicorn ecowatch_project.wsgi
+web gunicorn ecowatch_project.wsgi:application --log-file -

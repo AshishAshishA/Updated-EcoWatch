@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 import dj_database_url
 
 
@@ -31,9 +32,9 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = os.environ.get('DEBUG','False').lower() == 'true'
 # DEBUG = True
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
+# ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(" ")
 
-# ALLOWED_HOSTS = ['127.0.0.1','localhost']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -154,8 +155,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
-STATIC_URL = '/static/'
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
@@ -176,8 +175,10 @@ CKEDITOR_CONFIGS = {
 
 CKEDITOR_BROWSE_SHOW_DIRS = True
 
+STATIC_URL = '/static/'
 STATICFILES_DIRS=[os.path.join(BASE_DIR , "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
+django_heroku.settings(locals())
 
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
