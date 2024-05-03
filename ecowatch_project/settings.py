@@ -108,12 +108,12 @@ WSGI_APPLICATION = 'ecowatch_project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 
 
 # database_url = 'postgres://ashish:CGlLQXplKZu9VHcxuSdGZJIvZBfJTK6e@dpg-codeh3ol6cac73bip7sg-a.oregon-postgres.render.com/ecowatch_app'
