@@ -117,8 +117,12 @@ WSGI_APPLICATION = 'ecowatch_project.wsgi.application'
 
 
 # database_url = 'postgres://ashish:CGlLQXplKZu9VHcxuSdGZJIvZBfJTK6e@dpg-codeh3ol6cac73bip7sg-a.oregon-postgres.render.com/ecowatch_app'
-database_url=os.environ.get('DATABASE_URL')
-DATABASES['default']= dj_database_url.parse(database_url)
+# database_url=os.environ.get('DATABASE_URL')
+# DATABASES['default']= dj_database_url.parse(database_url)
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://u2j28tjl470j5l:p4f836b1c0fdcc0b744e665bb3b96d329430d3e11246354084dc9b2af8264094e@cc7f63ghe61fkm.cluster-czz5s0kz4scl.eu-west-1.rds.amazonaws.com:5432/dfac6ofbj4f7g7')
+}
 
 
 # Password validation

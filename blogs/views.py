@@ -263,14 +263,14 @@ def generate_gpt_input_value(request):
     import ai21
     from ai21 import AI21Client
 
-    AI21_API_KEY = os.environ.get('AI21_API_KEY')
+    # AI21_API_KEY = os.environ.get('AI21_API_KEY')
 
     def get_safe_completion(prompt):
         print(f'inside completion {prompt}')
 
         client = AI21Client(
-            # api_key='DyCMgHSZnyTAUwD1yKUfqwhUadC4xynU',
-            api_key = AI21_API_KEY
+            api_key='DyCMgHSZnyTAUwD1yKUfqwhUadC4xynU',
+            # api_key = AI21_API_KEY
         )
         completion = client.completion.create(
                 model="j2-ultra",
